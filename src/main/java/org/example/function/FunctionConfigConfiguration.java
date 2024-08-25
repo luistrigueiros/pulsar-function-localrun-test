@@ -1,4 +1,4 @@
-package org.example;
+package org.example.function;
 
 import org.apache.pulsar.common.functions.FunctionConfig;
 import org.springframework.beans.factory.annotation.Value;

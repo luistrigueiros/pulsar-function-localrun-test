@@ -36,7 +36,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.34'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
     implementation 'org.springframework.boot:spring-boot-starter'
 
     implementation ('org.apache.pulsar:pulsar-functions-api:3.3.1')
