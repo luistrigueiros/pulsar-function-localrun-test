@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    implementation ('org.apache.pulsar:pulsar-functions-api:3.3.1')
+    implementation ('org.apache.pulsar:pulsar-functions-local-runner-original:3.3.1')
+    implementation('com.google.protobuf:protobuf-java:3.21.9')
+    implementation ('org.awaitility:awaitility:4.2.2')
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+}
+
+test {
+    useJUnitPlatform()
+}
