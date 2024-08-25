@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'org.example'
@@ -15,16 +17,41 @@ configurations {
     }
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    configureEach {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
 
 dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
     compileOnly 'org.projectlombok:lombok:1.18.34'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+    implementation 'org.springframework.boot:spring-boot-starter'
+
     implementation ('org.apache.pulsar:pulsar-functions-api:3.3.1')
-    implementation ('org.apache.pulsar:pulsar-functions-local-runner-original:3.3.1')
-    implementation('com.google.protobuf:protobuf-java:3.21.9')
-    implementation ('org.awaitility:awaitility:4.2.2')
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    testImplementation ('org.apache.pulsar:pulsar-functions-local-runner-original:3.3.1')
+    testImplementation('com.google.protobuf:protobuf-java:3.21.9')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:pulsar'
+    testImplementation ('org.awaitility:awaitility:4.2.2')
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
 
 }
 

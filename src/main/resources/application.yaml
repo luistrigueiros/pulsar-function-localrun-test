@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: pulsar-testing
+
+logging:
+  level:
+    root: error
+    org.example: debug
+
+app:
+  input: "persistent://public/default/raw-feed"
+  output: "persistent://public/default/filtered-feed"
