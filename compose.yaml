@@ -2,6 +2,9 @@ services:
   pulsar:
     image: 'apachepulsar/pulsar:latest'
     ports:
-      - '6650'
-      - '8080'
+      - '6650:6650'
+      - '8080:8080'
     command: 'bin/pulsar standalone'
+    volumes:
+      - ./pulsar-standalone.conf:/conf/standalone.conf
+
