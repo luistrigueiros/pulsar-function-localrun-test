@@ -1,5 +1,6 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.Message;
 import org.springframework.beans.factory.DisposableBean;
@@ -9,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Slf4j
 @Component
 public class MessageConsumer implements DisposableBean {
     private final Consumer<String> consumer;
@@ -26,7 +28,7 @@ public class MessageConsumer implements DisposableBean {
                 Message<String> msg = null;
                 try {
                     msg = consumer.receive();
-                    System.out.printf("Message received: %s \n", msg.getValue());
+                    log.debug("Message received: {}", msg.getValue());
                     consumer.acknowledge(msg);
                 } catch (Exception e) {
                     consumer.negativeAcknowledge(msg);
